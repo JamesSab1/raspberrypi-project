@@ -27,5 +27,6 @@ urlpatterns = [
                            namespace='blog',
                            app_name='blog')),
     url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
-    url(r'^accounts/', include('blog.urls'))
+    url(r'^accounts/', include('blog.urls')),
+    url(r'^$', include('blog.urls')),
 ]

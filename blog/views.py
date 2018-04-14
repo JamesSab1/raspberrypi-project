@@ -4,6 +4,8 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.mail import send_mail
 from django.db.models import Count
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
+from django.core.urlresolvers import reverse
 
 from taggit.models import Tag
 
@@ -107,7 +109,7 @@ def post_share(request, post_id):
 #     results = Post.objects.filter(body__icontains=query)
 #     return render(request, 'blog/post/search.html', {'results': results})
 
-
+@login_required
 def search(request):
     form = SearchForm()
     cd = None
@@ -123,4 +125,5 @@ def search(request):
             # count total results
             total_results = results.count()
     return render(request, 'blog/post/search.html',
-                  {'form': form, 'cd': cd, 'results': results, 'total_results': total_results})
+                  {'form': form, 'cd': cd, 'results': results,
+                   'total_results': total_results})

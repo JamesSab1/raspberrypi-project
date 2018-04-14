@@ -27,7 +27,7 @@ class Post(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES,
-                              default='draft')
+                              default='published')
     objects = models.Manager()  # default manager
     published = PublishedManager()  # custom manager
     tags = TaggableManager()
